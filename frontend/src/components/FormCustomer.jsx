@@ -112,10 +112,10 @@ export default function FormCustomer({ mode, id }) {
         await updateCustomer(id, form);
          message = 'Cliente atualizado!'       
       }
-      navigate('/clientes', { state: { toastMessage: message, toastType: 'success'} })
+      navigate('/clientes', { state: { toastMessage: message, toastType: 'success', refresh: true} })
     } catch (err) {
       console.log(err);
-      navigate('/clientes', { state: { toastMessage: 'Ocorreu um erro ao salvar!', toastType: 'error' }});
+      navigate('/clientes', { state: { toastMessage: 'Ocorreu um erro ao salvar!', toastType: 'error', refresh: true }});
     }
   }
 

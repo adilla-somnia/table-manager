@@ -24,6 +24,12 @@ export function Reservas() {
   }, []);
 
   useEffect(() => {
+    if (location.state?.refresh) {
+      fetchReservations();
+    }
+  });
+
+  useEffect(() => {
     if (location.state?.toastMessage && !toastHandled.current) {
       showToast(location.state.toastMessage, location.state.toastType)
       toastHandled.current = true

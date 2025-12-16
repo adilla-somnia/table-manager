@@ -31,6 +31,7 @@ export default function FormReservation({ mode, id }) {
   const [initialForm, setInitialForm] = useState(null);
   const [available, setAvailable] = useState(null);
   const [checking, setChecking] = useState(false);
+  const [capacity, setCapacity] = useState('');
   const [suggestions, setSuggestions] = useState({
     sug_tables: "",
     sug_date: ""
@@ -83,7 +84,6 @@ export default function FormReservation({ mode, id }) {
     async function checkAvailability() {
       const newTableId = form.table_id;
       const newDate = form.reservation_datetime;
-        console.log(initialForm)
       clearTimeout(timeoutRef.current);
   
       if (newTableId === "" || newDate === "") {
@@ -106,7 +106,6 @@ export default function FormReservation({ mode, id }) {
       timeoutRef.current = setTimeout(() => {
         checkReservationAvailability(newTableId, newDate)
           .then((data) => {
-            console.log(data.suggestions)
             setAvailable(data.available);
             setChecking(false);
             if (data.available == false) {
@@ -127,8 +126,19 @@ export default function FormReservation({ mode, id }) {
 
   // atualizar formulário quando há mudanças
   function handleChange(e) {
-    setAvailable(null)
     setForm({ ...form, [e.target.name]: e.target.value });
+    setAvailable(null)
+    if (mode === 'edit'){
+    if (e.target.name === 'table_id' && e.target.value == initialForm.table_id) {
+      setAvailable(true)
+    }
+    else if (e.target.name === 'reservation_datetime' && e.target.value == initialForm.reservation_datetime) {
+      setAvailable(true)
+    }}
+    if (e.target.name === 'table_id') {
+      let capacity_table = tables.find(t => t.id == e.target.value)
+      setCapacity(capacity_table.capacity)
+    }
   }
 
   // SUBMIT
@@ -144,14 +154,13 @@ export default function FormReservation({ mode, id }) {
         await updateReservation(id, form);
         message = "Reserva atualizada!";
       }
-
       navigate("/reservas", {
-        state: { toastMessage: message, toastType: "success" },
+        state: { toastMessage: message, toastType: "success", refresh: true },
       });
     } catch (err) {
       console.log(err);
       navigate("/reservas", {
-        state: { toastMessage: "Ocorreu um erro!", toastType: "error" },
+        state: { toastMessage: "Ocorreu um erro!", toastType: "error", refresh: true },
       });
     }
   }
@@ -188,14 +197,16 @@ export default function FormReservation({ mode, id }) {
             >
             <option value="">Selecione...</option>
             {tables?.map((t) => (
-                <option key={t.id} value={t.id}>Mesa #{t.table_number}</option>
+                <option key={t.id} value={t.id} disabled={t.status === 'INATIVA'}>Mesa #{t.table_number} {t.status === 'INATIVA' ? '(desativada)' : ''}</option>
                 ))}
             </select>
             <p className="required">*</p>
-
-            
           </div>
 
+          <div className="input-label">
+            <div className="property">
+            {!form.table_id ? '' : `Capacidade: ${capacity} ${capacity > 1 ? 'pessoas' : 'pessoa'}`}</div>
+          </div>
 
 
             <div className="suggestions">
@@ -219,7 +230,7 @@ export default function FormReservation({ mode, id }) {
             {" "}
             <label>Cliente:</label>
             <select
-            className={`${!form.table_id ? 'invalid' : 'valid'}`}
+            className={`${!form.customer_id ? 'invalid' : 'valid'}`}
               name="customer_id"
               value={form.customer_id}
               onChange={handleChange}

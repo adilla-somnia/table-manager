@@ -26,10 +26,20 @@ export function Clientes() {
   }, []);
 
   useEffect(() => {
+    if (location.state?.refresh) {
+      fetchCustomers();
+    }
+  });
+
+  useEffect(() => {
     if (location.state?.toastMessage && !toastHandled.current) {
-      showToast(location.state.toastMessage, location.state.toastType)
+      showToast(
+        location.state.toastMessage,
+        location.state.toastType)
+
       toastHandled.current = true;
       window.history.replaceState({}, document.title)
+      
     }
   }, [location.state, showToast]);
 

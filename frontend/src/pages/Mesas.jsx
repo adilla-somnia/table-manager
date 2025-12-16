@@ -24,6 +24,12 @@ export function Mesas() {
   }, []);
 
   useEffect(() => {
+    if (location.state?.refresh) {
+      fetchTables()
+  }
+  });
+
+  useEffect(() => {
     if (location.state?.toastMessage && !toastHandled.current) {
       showToast(location.state.toastMessage, location.state.toastType)
       toastHandled.current = true

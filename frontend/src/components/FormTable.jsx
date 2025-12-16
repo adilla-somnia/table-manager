@@ -127,12 +127,12 @@ export default function FormTable({ mode, id }) {
       }
 
       navigate("/mesas", {
-        state: { toastMessage: message, toastType: "success" },
+        state: { toastMessage: message, toastType: "success", refresh: true },
       });
     } catch (err) {
       console.log(err);
       navigate("/mesas", {
-        state: { toastMessage: "Ocorreu um erro!", toastType: "error" },
+        state: { toastMessage: "Ocorreu um erro!", toastType: "error", refresh: true },
       });
     }
   }
