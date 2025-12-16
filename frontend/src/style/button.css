@@ -1,0 +1,104 @@
+.deleteButton {
+  background-color: var(--red-color);
+  border-radius: 6px;
+  border: 2px solid rgb(136, 136, 136);
+}
+
+.deleteButton:hover {
+  background-color: red;
+}
+
+.editButton {
+  background-color: var(--blue-color);
+  border-radius: 6px;
+  border: 2px solid rgb(136, 136, 136);
+}
+
+.editButton:hover {
+  background-color: deepskyblue;
+}
+
+.cancelButton {
+  background-color: var(--gray-color);
+  border-radius: 6px;
+  border: 2px solid rgb(180, 180, 180);
+}
+
+.cancelButton:hover {
+  background-color: rgb(110, 110, 110);
+}
+
+.createButton {
+  background-color: var(--green-color);
+  border-radius: 6px;
+  border: 2px solid rgb(3, 83, 0);
+}
+
+.createButton:hover {
+  background-color: green;
+}
+
+.button-new:disabled {
+  background-color: var(--gray-color);
+  color: rgb(194, 194, 194);
+  border: 2px solid rgb(180, 180, 180);
+}
+
+.button-new:disabled:hover {
+  transform: translateY(0px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.06);
+  cursor: default;
+}
+
+.button-new:disabled:active {
+  transform: translateY(0px);
+}
+
+.button-new {
+  justify-content: center;
+  padding: var(--button-mobile);
+  font-weight: bold;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.06);
+  color: rgb(255, 255, 255);
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.button-new:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+.button-new:active {
+  transform: translateY(0px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.button-desktop {
+  display: none;
+}
+
+
+@media (min-width: 768px) {
+.button-desktop {
+  padding: min(1em, 4%);
+  display: initial;
+  border-radius: 6px;
+  border: 2px solid rgb(102, 14, 14);
+  background-color: var(--background-primary);
+}
+.button-desktop:hover {
+  background-color: darkred;
+}
+}
+
+
+@media (max-width: 240px) {
+.button-new {
+  font-size: 0.7rem;
+  word-break: break-all;
+}
+}

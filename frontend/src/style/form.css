@@ -1,0 +1,346 @@
+.form-holder {
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+:placeholder-shown {
+  font-style: italic;
+}
+
+.form {
+  background-color: aliceblue;
+  justify-self: center;
+  padding: 20px;
+  margin: 5px;
+  border-radius: 7px;
+  width: 100%;
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.required {
+  font-size: 1rem;
+  margin-left: 5px;
+  font-weight: bold;
+  display: block;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.buttons-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 30px;
+  gap: 1rem;
+}
+
+.solo {
+  width: 50%;
+  align-self: center;
+  margin: -10px;
+}
+
+.header-form {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 3px
+}
+
+.header-form > hr {
+  margin: 4vh 0 2vh 0;
+}
+
+.header-form > p {
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+.fields {
+  display: block;
+}
+
+
+.suggestions {
+  height: 50px;
+  font-style: italic;
+  font-size: 0.8rem;
+  line-height: 1.1rem;
+  margin-left: 3%;
+}
+
+.suggestions > p:first-child {
+  color: var(--green-color);
+  font-weight: bold;
+  font-style: normal;
+}
+
+.suggestions > div > p:first-child {
+  color: var(--red-color);
+  font-weight: bold;
+  font-style: normal;
+}
+
+.input-label {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.input-label > label {
+  flex: 2;
+  text-align: right;
+}
+
+.input-label > .long-label {
+  flex: 1;
+}
+
+.input-label > .long-input {
+  flex: 5;
+  text-align: left;
+  text-indent: 5px;
+}
+
+.input-label > input, select {
+  flex: 3;
+  text-align: center;
+}
+
+.unavailable {
+  color: var(--red-color);
+  font-weight: bold;
+}
+
+.invalid {
+  color: var(--red-color);
+  border-color: var(--red-color) ;
+}
+
+.alert-message {
+  color: gray;
+  font-weight: bold;
+  text-align: right;
+  font-size: 0.7rem;
+}
+
+.valid {
+  border-color: var(--green-color);
+}
+
+.valid:focus {
+  color: var(--green-color);
+    border-color: var(--green-color);
+}
+
+.num-input {
+  width: 50px;
+  height: 1.4rem;
+}
+
+input, select {
+  border-radius: 5px;
+  border: 2px solid gray;
+  background-color: rgb(255, 255, 255);
+  margin-left: 10px;
+}
+
+label {
+  font-weight: bold;
+}
+/* 
+@media (max-width: 75px) {
+  
+  .form {
+    padding: 5px;
+  }
+
+  .header-form {
+    word-break: break-all;
+  }
+
+.fields {
+  word-break: break-all;
+  gap: 1100vw;
+}
+
+.num-input {
+  width: 20px;
+  font-size: 0.6rem;
+}
+
+select {
+  font-size: 0.3rem;
+}
+
+.input-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.input-label > input, select {
+  margin: 0;
+}
+
+.buttons-form {
+  display: flex;
+  flex-direction: column;
+
+}
+.buttons-form > button {
+  font-size: 1rem;
+  padding: 5px;
+  align-self: center;
+}
+
+.input-label {
+  display: flex;
+  flex-direction: column;
+}
+
+} */
+/* 
+@media (max-width: 110px) and (min-width: 76px) {
+  .form {
+    overflow-y: auto;
+  }
+
+.input-label {
+  display: flex;
+  flex-direction: column;
+}
+
+
+  .form-holder > h2 {
+    word-break: break-all;
+  }
+
+.suggestions {
+  word-break: break-all;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 110vw;
+  text-align: center;
+}
+
+.num-input {
+  width: 20px;
+  font-size: 0.6rem;
+  align-self: center;
+}
+
+.buttons-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons-form > button {
+  font-size: 1rem;
+  padding: 5px;
+  align-self: center;
+}
+
+.header-form {
+  word-break: break-all;
+}
+
+
+select {
+  font-size: 0.7rem;
+}
+
+} */
+
+@media (max-width: 270px) {
+  .form {
+    overflow-y: scroll;
+  }
+
+  .input-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.buttons-form {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  align-self: center;
+  word-break: keep-all;
+}
+
+  .suggestions {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+  }
+
+  label, input, select {
+  margin-left: 0px;
+  }
+
+}
+
+@media (min-width: 768px) {
+ .form {
+  font-size: 1rem;
+  width: 50%;
+  align-self: center;
+ }
+ .suggestions {
+  font-size: 1rem;
+  margin-left: 9rem;
+ }
+
+ .header-form {
+  font-size: 1.2rem;
+ }
+
+ .header-form > p {
+  font-size: 1rem;
+ }
+
+ .header-form > hr {
+  margin-top: 10px;
+ }
+
+ .buttons-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-left: 30%;
+  margin-right: 30%;
+  align-items: center;
+ }
+
+ .input-label {
+  display: flex;
+ }
+
+.input-label > label {
+  flex: 1;
+  text-align: right;
+}
+
+.input-label > input, select {
+  flex: 3;
+  text-align: left;
+  text-indent: 1%;
+}
+
+.solo {
+  align-self: center;
+  margin: 10px;
+}
+
+}
