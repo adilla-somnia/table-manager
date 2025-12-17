@@ -25,11 +25,11 @@
 
 
 .toast-success {
-  background: #2ecc71;
+  background: #2ecc70cb;
 }
 
 .toast-error {
-  background: #e74c3c;
+  background: #e74d3cd3;
 }
 
 .toast-delete {

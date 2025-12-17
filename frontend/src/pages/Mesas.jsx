@@ -3,7 +3,7 @@ import { CardMesa } from '../components/CardMesa';
 import '../style/button.css';
 import '../style/cards.css';
 import { useEffect, useState, useRef } from 'react';
-import { deleteTable, getTables } from '../api/tables';
+import { deleteTable, getTables, getRestrictTables } from '../api/tables';
 import { useToast } from '../context/ToastContext';
 import { Header } from '../components/Header';
 
@@ -12,11 +12,14 @@ export function Mesas() {
   const location = useLocation();
   const { showToast } = useToast();
   const [tables, setTables] = useState([]);
+  const [restrictTables, setRestrictTables] = useState([]);
   const toastHandled = useRef(false);
 
   const fetchTables = async () => {
     const data = await getTables();
     setTables(data);
+    const restrict_data = await getRestrictTables();
+    setRestrictTables(restrict_data);
   }
 
   useEffect(() => {
@@ -56,6 +59,7 @@ export function Mesas() {
     <div className="main">
       <Header title='Mesas Cadastradas' back=''></Header>
       <div>
+      <p><i>obs.:</i> Mesas com reservas cadastradas não podem ser excluídas.</p>
         <div className="page-head">
           <h2> Página de Mesas</h2>
           <button className="button-new button-desktop" onClick={() => {
@@ -68,7 +72,7 @@ export function Mesas() {
           }}>+</button>
         </div>
         <hr />
-        <CardMesa tables={tables || []} onEdit={editarMesa} onDelete={excluirMesa} ></CardMesa>
+        <CardMesa restrict={restrictTables || []} tables={tables || []} onEdit={editarMesa} onDelete={excluirMesa} ></CardMesa>
       </div>
     </div>
   );

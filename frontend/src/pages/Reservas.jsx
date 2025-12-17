@@ -44,7 +44,7 @@ export function Reservas() {
   const excluirReserva = async (id) => {
     try {
       await deleteReservation(id);
-      set((prev) => prev.filter((u) => u.id !== id));
+      setReservations((prev) => prev.filter((u) => u.id !== id));
       showToast('Reserva excluída com sucesso!', 'delete')
     } catch (error) {
       console.error(error);

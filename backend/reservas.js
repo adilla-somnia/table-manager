@@ -44,6 +44,19 @@ app.get('/customers', (req, res) => {
     });
 });
 
+app.get('/customers/restrict', (req, res) => {
+    const query = 'SELECT DISTINCT customers.id FROM customers JOIN reservations r ON r.customer_id = customers.id';
+
+    connection.query(query, (err, results) => {
+        if (err) {
+            console.error('Erro ao buscar clientes:', err);
+            return res.status(500).send('Erro interno do servidor');
+        }
+        // Retorna a lista de usuários em formato JSON
+        res.json(results);
+    })
+});
+
 app.get('/customers/:id', (req, res) => {
     const { id } = req.params;
 
@@ -173,6 +186,19 @@ app.get('/tables', (req, res) => {
         }
         return res.json(results)
     });
+});
+
+app.get('/tables/restrict', (req, res) => {
+    const query = 'SELECT DISTINCT tables.id FROM tables JOIN reservations r ON r.table_id = tables.id';
+
+    connection.query(query, (err, results) => {
+        if (err) {
+            console.error('Erro ao buscar clientes:', err);
+            return res.status(500).send('Erro interno do servidor');
+        }
+        // Retorna a lista de mesas em formato JSON
+        res.json(results);
+    })
 });
 
 app.get('/tables/:id', (req, res) => {

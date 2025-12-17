@@ -3,6 +3,7 @@ const URL = 'http://localhost:3000/customers';
 
 // real req
 export const getCustomers = () => fetch(URL).then(res => res.json());
+export const getRestrictCustomers = () => fetch(`${URL}/restrict`).then(res => res.json());
 export const getCustomerById = (id) => fetch(`${URL}/${id}`).then(res => res.json());
 export const createCustomer = (body) => {
   return fetch(URL, {

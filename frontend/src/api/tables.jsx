@@ -1,9 +1,9 @@
-// api/customers.js
 const URL = 'http://localhost:3000/tables';
 
 // real req
 export const getTables = () => fetch(URL).then(res => res.json());
 export const getTableById = (id) => fetch(`${URL}/${id}`).then(res => res.json());
+export const getRestrictTables = () => fetch(`${URL}/restrict`).then(res => res.json());
 export const createTable = (body) => {
   fetch(URL, { 
     method: "POST",

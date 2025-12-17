@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import "../style/cards.css";
 
-export function CardCliente({ customers, onEdit, onDelete }) {
+export function CardCliente({ restrict, customers, onEdit, onDelete }) {
   const lockRef = useRef();
 
   const handleSafeClick = (callback) => (e) => {
@@ -39,11 +39,13 @@ export function CardCliente({ customers, onEdit, onDelete }) {
                 Editar cliente
               </button>
               <button
+                disabled={restrict.some(i => i.id === customer.id)}
                 onClick={handleSafeClick(() => onDelete(customer.id))}
                 className="button-new deleteButton"
               >
                 Excluir cliente
               </button>
+              
             </div>
           </div>
         ))

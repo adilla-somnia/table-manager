@@ -3,7 +3,7 @@ import '../style/cards.css';
 import '../style/button.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Header } from '../components/Header';
-import { deleteCustomer, getCustomers } from '../api/customers';
+import { deleteCustomer, getCustomers, getRestrictCustomers } from '../api/customers';
 import { useToast } from '../context/ToastContext';
 import { useState, useRef, useEffect } from 'react';
 
@@ -14,11 +14,14 @@ export function Clientes() {
   const location = useLocation();
   const { showToast } = useToast();
   const [customers, setCustomers] = useState([]);
+  const [restrictCustomers, setRestrictCustomers] = useState([]);
   const toastHandled = useRef(false);
 
   const fetchCustomers = async () => {
     const data = await getCustomers();
     setCustomers(data);
+    const restrict_data = await getRestrictCustomers();
+    setRestrictCustomers(restrict_data);
   }
 
   useEffect(() => {
@@ -62,6 +65,7 @@ export function Clientes() {
     <div className="main">
       <Header title='Clientes Cadastrados' back=''></Header>
       <div>
+        <p><i>obs.:</i> Clientes com reservas cadastradas não podem ser excluídos.</p>
         <div className="page-head">
           <h2> Página de Clientes</h2>
           <button className='button-new button-desktop' onClick={() => navigate('/clientes/add')}>Adicionar Cliente</button>
@@ -70,7 +74,7 @@ export function Clientes() {
           </button>
         </div>
         <hr />
-        <CardCliente customers={customers || []} onEdit={editarCliente} onDelete={excluirCliente}></CardCliente>
+        <CardCliente restrict={restrictCustomers || []} customers={customers || []} onEdit={editarCliente} onDelete={excluirCliente}></CardCliente>
       </div>
     </div>
   );

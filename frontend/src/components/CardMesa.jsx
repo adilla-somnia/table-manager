@@ -3,7 +3,7 @@ import { useRef } from 'react';
 
 // const URL = 'http://localhost:3000/tables/';
 
-export function CardMesa({ tables, onEdit, onDelete }) {
+export function CardMesa({ restrict, tables, onEdit, onDelete }) {
 
   const lockRef = useRef(false);
 
@@ -32,7 +32,9 @@ export function CardMesa({ tables, onEdit, onDelete }) {
             <button onClick={handleSafeClick(() => onEdit(table.id))} 
             className='button-new editButton' >Editar mesa</button>
           <button onClick={handleSafeClick(() => onDelete(table.id))} 
-          className='button-new deleteButton'>Excluir mesa</button>
+          className='button-new deleteButton'
+          disabled={restrict.some(i => i.id === table.id)}
+          >Excluir mesa</button>
           </div>
 
           
