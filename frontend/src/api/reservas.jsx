@@ -1,7 +1,4 @@
-// api/reservas.js
 const URL = 'http://localhost:3000/reservations';
-
-// real req
 export const getReservations = () => fetch(URL).then(res => res.json());
 export const getReservationById = (id) => fetch(`${URL}/${id}`).then(res => res.json());
 export const createReservation = (body) => {
@@ -22,10 +19,3 @@ export const updateReservation = (id, body) => {
   };
 export const checkReservationAvailability = (table_id, date) => (fetch(`http://localhost:3000/reservation-check/${table_id}?date=${date}`).then(res => res.json()));
 export const deleteReservation = (id) => fetch(`${URL}/${id}`, { method: "DELETE" });
-
-// export const checkTableNumber = (number) => {
-//   return fetch(`http://localhost:3000/check-number?num=${number}`).then(res => res.json())
-// };
-// export const suggestTableNumber = () => {
-//   return fetch(`http://localhost:3000/suggests`).then(res => res.json())
-// };
