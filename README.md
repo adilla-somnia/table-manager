@@ -1,33 +1,29 @@
 # table-manager
 
-## Passos
+## Passos para utilização
 
-1. Instale as dependências na pasta do projeto
-npm install mysql2 express
+1. Clone ou faça download do repositório
+`git clone {html}`
 
-## Iniciando o server mysql
-2. Abra o powershell e vá até a pasta do projeto e execute:
-`powershell init-mysql.ps1`
+2. Tenha o MySQL funcionando
 
-3. Insira o caminho para a sua pasta MySQL (ex: C:\Users\eu\MySQL)
+3. Entre no diretório "backend" e instale as dependecias:
+`npm install`
 
-3.1 Se desejar não fazer esse passo sempre que iniciar o projeto insira o seu caminho pro MySQL no arquivo init-mysql.ps1 assim:
-` # start_mysql_user.ps1
-param(
-    [string]$MySqlPath = "{INSIRA O SEU CAMINHO AQUI SEM AS CHAVES}"
-) `
+4. Altere o arquivo .env inserindo o seu usario para o MySQL em DB_USER e sua senha em DB_PASSWORD
 
-4. Deixe a janela aberta, o MySQL Server está rodando. Ctrl+C para parar o Server.
+5. Execute o arquivo de setup do banco de dados:
+`node reservas-setup.js`
 
-## Setup
-5. Se for a primeira vez usando o script, use este comando na pasta do projeto:
-`node setup.js`
+6. Coloque o back-end para rodar com o comando(deixe este terminal aberto enquanto roda o projeto):
+`node reservas.js`
 
-## API
-6. Após isso, pode usar esse comando: (Ctrl+C para parar)
-`node back-end.js`
+6.1 Backend está rodando na porta 3000
 
-7. A API está rodando no localhost.
+7. Após isso abra outro terminal e entre no diretório "frontend" e execute este comando:
+`npm install`
+`npm run dev`
 
-## Fechamento
-8. Quando for finalizar, pare o script back-end.js com Ctrl+C no terminal de execução e Ctrl+C no terminal do MySQL server.
+7. O frontend está rodando, e a porta deve ser informada no output do comando anterior.
+
+8. Quando for finalizar, use CTRL+C nos dois terminais.
