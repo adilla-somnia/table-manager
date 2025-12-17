@@ -38,6 +38,7 @@ export default function FormReservation({ mode, id }) {
   });
   const timeoutRef = useRef(null);
   const { showToast } = useToast();
+  const [statusOptions, setStatusOptions] = useState([]);
 
   const fetchData = async () => {
     const data_tables = await getTables()
@@ -62,11 +63,19 @@ export default function FormReservation({ mode, id }) {
             reservation_datetime: reservation.reservation_datetime.slice(0,10),
             status: reservation.status
         });
+        if (reservation.status === 'CONFIRMADA') {
+          setStatusOptions(['CANCELADA', 'CONFIRMADA'])
+        }
+        else if (reservation.status === 'PENDENTE') {
+          setStatusOptions(['CANCELADA', 'CONFIRMADA', 'PENDENTE'])
+        }
+        else if (reservation.status === 'CANCELADA') {
+          setStatusOptions(['CANCELADA'])
+        }
         setAvailable(true);
         setLoading(false);
       });
     }
-
     fetchData();
   }, [mode, id]);
 
@@ -76,7 +85,8 @@ export default function FormReservation({ mode, id }) {
     return (
       parseInt(form.table_id) !== initialForm.table_id ||
       parseInt(form.customer_id) !== initialForm.customer_id ||
-      form.reservation_datetime !== initialForm.reservation_datetime
+      form.reservation_datetime !== initialForm.reservation_datetime ||
+      form.status !== initialForm.status
     );
   };
 
@@ -134,7 +144,11 @@ export default function FormReservation({ mode, id }) {
     }
     else if (e.target.name === 'reservation_datetime' && e.target.value == initialForm.reservation_datetime) {
       setAvailable(true)
-    }}
+    }
+    else if (e.target.name === 'status') {
+      setAvailable(true)
+    }
+  }
     if (e.target.name === 'table_id') {
       let capacity_table = tables.find(t => t.id == e.target.value)
       setCapacity(capacity_table.capacity)
@@ -208,7 +222,6 @@ export default function FormReservation({ mode, id }) {
             {!form.table_id ? '' : `Capacidade: ${capacity} ${capacity > 1 ? 'pessoas' : 'pessoa'}`}</div>
           </div>
 
-
             <div className="suggestions">
                 {form.table_id === "" || form.reservation_datetime === ""
                 ? "" : available === null ? "" :
@@ -269,6 +282,22 @@ export default function FormReservation({ mode, id }) {
                 </div>
             )}
             </div>
+
+            {mode==='add' ? '' : (
+              <div className="input-label">
+              <label>Status: </label>
+              <select name="status" id="status"
+              value={form.status}
+              onChange={handleChange}
+              required
+              >
+                {statusOptions?.map((c) => (
+                                <option key={c} value={c}> {c}</option>
+                                ))}
+              </select>
+            </div>
+            )}
+            
       </div>
         
 
