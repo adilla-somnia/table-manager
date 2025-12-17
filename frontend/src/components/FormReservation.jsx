@@ -31,7 +31,7 @@ export default function FormReservation({ mode, id }) {
   const [initialForm, setInitialForm] = useState(null);
   const [available, setAvailable] = useState(null);
   const [checking, setChecking] = useState(false);
-  const [capacity, setCapacity] = useState('');
+  const [capacity, setCapacity] = useState(null);
   const [suggestions, setSuggestions] = useState({
     sug_tables: "",
     sug_date: ""
@@ -78,6 +78,20 @@ export default function FormReservation({ mode, id }) {
     }
     fetchData();
   }, [mode, id]);
+
+useEffect(() => {
+  if (!form.table_id || tables.length === 0) {
+    setCapacity(null);
+    return;
+  }
+
+  const table = tables.find(
+    t => t.id === Number(form.table_id)
+  );
+
+  setCapacity(table ? table.capacity : null);
+}, [form.table_id, tables]);
+
 
 
     const isFormChanged = () => {
@@ -149,11 +163,6 @@ export default function FormReservation({ mode, id }) {
       setAvailable(true)
     }
     }
-
-    if (e.target.name === 'table_id') {
-      let capacity_table = tables.find(t => t.id == e.target.value)
-      setCapacity(capacity_table.capacity)
-    }
   }
 
   // SUBMIT
@@ -219,8 +228,14 @@ export default function FormReservation({ mode, id }) {
           </div>
 
           <div className="input-label">
+            
+              
+          {form.table_id && typeof capacity === 'number' && (
             <div className="property">
-            {!form.table_id ? '' : `Capacidade: ${capacity} ${capacity > 1 ? 'pessoas' : 'pessoa'}`}</div>
+              Capacidade: {capacity} {capacity > 1 ? 'pessoas' : 'pessoa'}
+            </div>
+          )}
+
           </div>
 
             <div className="suggestions">
@@ -337,6 +352,7 @@ export default function FormReservation({ mode, id }) {
         )}
 
       </div>
+  {mode === 'edit' ? (!isFormChanged() ? (<p className='alert-message'>Nenhuma informação foi alterada</p>) : "") : ''}
     </form>
   );
 }
