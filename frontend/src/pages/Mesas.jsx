@@ -29,7 +29,7 @@ export function Mesas() {
   useEffect(() => {
     if (location.state?.refresh) {
       fetchTables()
-  }
+    }
   });
 
   useEffect(() => {
@@ -59,7 +59,7 @@ export function Mesas() {
     <div className="main">
       <Header title='Mesas Cadastradas' back=''></Header>
       <div>
-      <p><i>obs.:</i> Mesas com reservas cadastradas não podem ser excluídas.</p>
+        <p><i>obs.:</i> Mesas com reservas cadastradas não podem ser excluídas.</p>
         <div className="page-head">
           <h2> Página de Mesas</h2>
           <button className="button-new button-desktop" onClick={() => {

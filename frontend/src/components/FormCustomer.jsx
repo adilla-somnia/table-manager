@@ -35,6 +35,7 @@ export default function FormCustomer({ mode, id }) {
     }
   }, [mode, id]);
 
+  // ver se alguma informação mudou
   const isFormChanged = () => {
     if (!initialForm) return false;
     return (
@@ -59,9 +60,9 @@ export default function FormCustomer({ mode, id }) {
 
     setCanSubmit(setCanSubmitValue);
 
-    }
+  }
 
- // Função para validar o número de telefone
+  // Função para validar o número de telefone
   function isPhoneValid(phone) {
     const phoneRegex = /^\(\d{2}\) \d{5}-\d{4}$/; // Verifica o formato (xx) xxxxx-xxxx
     return phoneRegex.test(phone);
@@ -76,12 +77,12 @@ export default function FormCustomer({ mode, id }) {
   function handlePhone(e) {
     let value = e.target.value;
 
-    value = value.replace(/\D/g, ''); // Remove qualquer coisa que não seja número
+    value = value.replace(/\D/g, ''); // remover qualquer coisa que não seja número
 
-    if (value.length > 0) value = `(${value}`;
-    if (value.length > 3) value = `${value.slice(0, 3)}) ${value.slice(3)}`;
-    if (value.length > 9) value = `${value.slice(0, 10)}-${value.slice(10)}`;
-    value = value.slice(0, 15); // Limita a 15 caracteres (formato máximo)
+    if (value.length > 0) value = `(${value}`; // (12
+    if (value.length > 3) value = `${value.slice(0, 3)}) ${value.slice(3)}`; // (12) 3
+    if (value.length > 9) value = `${value.slice(0, 10)}-${value.slice(10)}`; // (12) 34567-8
+    value = value.slice(0, 15); // limita a 15 caracteres (formato máximo)
 
     e.target.value = value;
     setForm({ ...form, phone: value });
@@ -91,12 +92,6 @@ export default function FormCustomer({ mode, id }) {
     const isPhoneValidNow = isPhoneValid(value);
     const isNameValidNow = form.name.length > 0;
     const isEmailValidNow = form.email.length === 0 || isEmailValid(form.email);
-
-    // if (form.email.length > 0) {
-    //   setCanSubmitValue = isPhoneValid(value) && form.name.length > 0 && isEmailValid(form.email);
-    // } else {
-    //   setCanSubmitValue = isPhoneValid(value) && form.name.length > 0;
-    // }
 
     setCanSubmit(isPhoneValidNow && isNameValidNow && isEmailValidNow);
   }
@@ -110,12 +105,12 @@ export default function FormCustomer({ mode, id }) {
         message = 'Cliente adicionado!'
       } else {
         await updateCustomer(id, form);
-         message = 'Cliente atualizado!'       
+        message = 'Cliente atualizado!'
       }
-      navigate('/clientes', { state: { toastMessage: message, toastType: 'success', refresh: true} })
+      navigate('/clientes', { state: { toastMessage: message, toastType: 'success', refresh: true } })
     } catch (err) {
       console.log(err);
-      navigate('/clientes', { state: { toastMessage: 'Ocorreu um erro ao salvar!', toastType: 'error', refresh: true }});
+      navigate('/clientes', { state: { toastMessage: 'Ocorreu um erro ao salvar!', toastType: 'error', refresh: true } });
     }
   }
 
@@ -126,26 +121,26 @@ export default function FormCustomer({ mode, id }) {
       <HeaderForm />
       <div className="fields">
         <div className="input-label">
-      <label className='long-label'>Nome:</label>
-      <input placeholder='Digite o nome...' className={`long-input ${form.name.length > 0 ? 'valid' : 'invalid'}`} name="name" value={form.name} onChange={handleChange} required /> <p className='required'>*</p>
-      </div>
-      <div className="input-label">
-      <label className='long-label'>Telefone:</label>
-      <input placeholder='Digite o telefone...' className={`long-input ${isPhoneValid(form.phone) ? 'valid' : 'invalid'}`} name="phone" value={form.phone} onChange={handlePhone} required /> <p className='required'>*</p>
-      </div>
-      <div className="input-label">
-      <label className='long-label'>E-mail:</label>
-      <input placeholder='Digite o e-mail...' className={`long-input ${form.email.length === 0 ? '' : (isEmailValid(form.email) ? 'valid' : 'invalid')}`} name="email" value={form.email} onChange={handleChange} /> <p className='required invisible'>..</p>
-      </div>
+          <label className='long-label'>Nome:</label>
+          <input placeholder='Digite o nome...' className={`long-input ${form.name.length > 0 ? 'valid' : 'invalid'}`} name="name" value={form.name} onChange={handleChange} required /> <p className='required'>*</p>
+        </div>
+        <div className="input-label">
+          <label className='long-label'>Telefone:</label>
+          <input placeholder='Digite o telefone...' className={`long-input ${isPhoneValid(form.phone) ? 'valid' : 'invalid'}`} name="phone" value={form.phone} onChange={handlePhone} required /> <p className='required'>*</p>
+        </div>
+        <div className="input-label">
+          <label className='long-label'>E-mail:</label>
+          <input placeholder='Digite o e-mail...' className={`long-input ${form.email.length === 0 ? '' : (isEmailValid(form.email) ? 'valid' : 'invalid')}`} name="email" value={form.email} onChange={handleChange} /> <p className='required invisible'>..</p>
+        </div>
       </div>
       <div className="buttons-form">
-      <button onClick={() => navigate('/clientes')} className='button-new cancelButton' type='button'>Cancelar</button>
+        <button onClick={() => navigate('/clientes')} className='button-new cancelButton' type='button'>Cancelar</button>
 
-      {mode === 'edit' ? (      <button type="submit" disabled={!canSubmit || !isFormChanged()} className='button-new createButton'>
-      Atualizar
-      </button>) :       <button type="submit" disabled={!canSubmit} className='button-new createButton'>
-        Salvar
-      </button>}
+        {mode === 'edit' ? (<button type="submit" disabled={!canSubmit || !isFormChanged()} className='button-new createButton'>
+          Atualizar
+        </button>) : <button type="submit" disabled={!canSubmit} className='button-new createButton'>
+          Salvar
+        </button>}
       </div>
       {mode === 'edit' ? (!isFormChanged() ? (<p className='alert-message'>Nenhuma informação foi alterada</p>) : "") : ''}
     </form>

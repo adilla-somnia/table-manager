@@ -129,87 +129,85 @@ nav {
   -webkit-tap-highlight-color: transparent; 
 }
 
+/* desktop cards  */
 @media (min-width: 768px) {
+  .cards-container {
+    grid-template-columns: 1fr 1fr;
+  }
 
-.cards-container {
-  grid-template-columns: 1fr 1fr;
+  .main {
+    padding: min(2em, 2%);
+  }
+
+  .add-button-round {
+    display: none;
+  }
+
+  nav {
+    display: flex;
+    gap: 10px;
+    border: none;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1rem;
+    height: auto;
+  }
+
+  .go-back {
+    flex: 1;
+    padding: min(2em, 1%);
+    font-size: 1rem;
+  }
+
+  .midblock {
+    flex: 8;
+    padding: min(2em, 1%);
+  }
+
 }
-
-.main {
-  padding: min(2em, 2%);
-}
-
-.add-button-round {
-  display: none;
-}
-
-nav {
-  display: flex;
-  gap: 10px;
-  border: none;
-  justify-content: space-around;
-  align-items: center;
-  font-size: 1rem;
-  height: auto;
-}
-
-.go-back {
-  flex: 1;
-  padding: min(2em, 1%);
-  font-size: 1rem;
-}
-
-.midblock {
-  flex: 8;
-  padding: min(2em, 1%);
-}
-
-}
-
+/* wider desktop cards  */
 @media (min-width: 1100px) { 
   .cards-container {
   grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
-
+/* responsive  */
 @media (max-width: 240px) {
+  nav {
+    display: flex;
+    flex-direction: column;
+  }
 
-nav {
-  display: flex;
-  flex-direction: column;
-}
+  .go-back, .midblock {
+    width: 80vw;
+    color: #f0f0f5;
+    font-size: 80%;
+    word-break: keep-all;
+  }
 
-.go-back, .midblock {
-  width: 80vw;
-  color: #f0f0f5;
-  font-size: 80%;
-  word-break: keep-all;
-}
+  .page-head {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+  }
 
-.page-head {
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  align-items: center;
-  text-align: center;
-}
+  .add-button-round {
+    width: 30px;
+    height: 30px;
+    font-size: 20px; 
+  }
 
-.add-button-round {
-  width: 30px;
-  height: 30px;
-  font-size: 20px; 
-}
-
-.info > p:first-child {
-  padding-bottom: 0;
-  font-size: 1rem;
-}
+  .info > p:first-child {
+    padding-bottom: 0;
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 94px) {
   .go-back, .midblock {
   word-break: break-all;
-}
-
+  }
 }

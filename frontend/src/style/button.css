@@ -1,3 +1,4 @@
+/* button colors */
 .deleteButton {
   background-color: var(--red-color);
   border-radius: 6px;
@@ -38,6 +39,7 @@
   background-color: green;
 }
 
+/* button features */
 .button-new:disabled {
   background-color: var(--gray-color);
   color: rgb(194, 194, 194);
@@ -81,7 +83,7 @@
   display: none;
 }
 
-
+/* desktop buttons */
 @media (min-width: 768px) {
 .button-desktop {
   padding: min(1em, 4%);
@@ -95,7 +97,7 @@
 }
 }
 
-
+/* responsive button */
 @media (max-width: 240px) {
 .button-new {
   font-size: 0.7rem;

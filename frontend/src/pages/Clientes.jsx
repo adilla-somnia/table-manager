@@ -7,8 +7,6 @@ import { deleteCustomer, getCustomers, getRestrictCustomers } from '../api/custo
 import { useToast } from '../context/ToastContext';
 import { useState, useRef, useEffect } from 'react';
 
-
-
 export function Clientes() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -42,7 +40,7 @@ export function Clientes() {
 
       toastHandled.current = true;
       window.history.replaceState({}, document.title)
-      
+
     }
   }, [location.state, showToast]);
 
@@ -57,7 +55,7 @@ export function Clientes() {
       showToast('Cliente excluído com sucesso!', 'delete');
     } catch (error) {
       console.error(error)
-      showToast('Erro ao excluir mesa!', 'error')      
+      showToast('Erro ao excluir mesa!', 'error')
     }
   }
 

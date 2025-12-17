@@ -5,7 +5,7 @@ export function CardCliente({ restrict, customers, onEdit, onDelete }) {
   const sortedCustomers = [...customers.sort((a, b) => {
     return new Date(b.updated_at) - new Date(a.updated_at)
   })]
-  
+
   const lockRef = useRef();
 
   const handleSafeClick = (callback) => (e) => {
@@ -49,7 +49,7 @@ export function CardCliente({ restrict, customers, onEdit, onDelete }) {
               >
                 Excluir cliente
               </button>
-              
+
             </div>
           </div>
         ))

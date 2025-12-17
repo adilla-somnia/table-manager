@@ -11,11 +11,9 @@ const serverConfig = {
 
 const dbName = 'restaurante_db';
 
-const dbConfig = { ...serverConfig, database: dbName};
+const dbConfig = { ...serverConfig, database: dbName };
 
 const createDbQuery = `CREATE DATABASE IF NOT EXISTS ${dbName}`
-
-
 
 const createTableQuery = `
     USE restaurante_db;

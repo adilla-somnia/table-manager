@@ -39,8 +39,6 @@ export default function FormTable({ mode, id }) {
           capacity: table.capacity,
           status: table.status,
         });
-
-
         setAvailable(true);
         setLoading(false);
       });
@@ -176,8 +174,8 @@ export default function FormTable({ mode, id }) {
                 {available
                   ? ""
                   : suggestions
-                  ? `Números disponíveis: ${suggestions}`
-                  : "Sem sugestões..."}
+                    ? `Números disponíveis: ${suggestions}`
+                    : "Sem sugestões..."}
               </p>
             </div>
           )}

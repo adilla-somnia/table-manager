@@ -8,22 +8,9 @@ export function ToastProvider({ children }) {
 
   const showToast = useCallback((message, type = 'success', duration = 4000) => {
     const id = crypto.randomUUID();
-
     const newToast = {id, message, type};
 
     setToasts((prev) => [...prev, newToast]);
-
-  //   return new Promise((resolve) => {
-  //     setToast({ message, type });
-
-  //     // remove depois de 4s
-  //     setTimeout(() => {
-  //       setToast(null);
-  //       resolve();
-  //     },  4000);
-  //   })
-
-  // }, []);
 
   setTimeout(() => {
     setToasts((prev) => prev.filter((t) => t.id !== id));
@@ -44,7 +31,6 @@ export function useToast() {
 
 // Componente visual
 function ToastList({ toasts }) {
-  // if (!toast) return null;
   return (
     <div className="toast-container">
       {toasts.map((toast) => (
