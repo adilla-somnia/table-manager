@@ -273,9 +273,8 @@ useEffect(() => {
           </div>
 
             <div className="input-label">
-            {" "}
             <label>Data:</label>
-            <input className={`${!form.table_id || !available ? 'invalid' : 'valid'}`} type="date" value={form.reservation_datetime} name="reservation_datetime" id="reservation_datetime" onChange={handleChange} required />
+            <input className={`${!form.table_id || !available ? 'invalid' : 'valid'}`} type="date" value={form.reservation_datetime} name="reservation_datetime" id="reservation_datetime" min="2025-12-01" max="2026-12-31" onChange={handleChange} required />
             <p className="required">*</p>
           </div>
                       <div className="suggestions">
