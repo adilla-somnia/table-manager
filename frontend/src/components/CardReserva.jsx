@@ -43,7 +43,7 @@ export function CardReserva({ reservations, onEdit, onDelete }) {
           </div>
           <div className="buttons">
             <button onClick={handleSafeClick(() => onEdit(reservation.id))} 
-            className='button-new editButton' >Editar reserva</button>
+            className='button-new editButton' disabled={reservation.status === 'CANCELADA'}>Editar reserva</button>
           <button onClick={handleSafeClick(() => onDelete(reservation.id))} 
           className='button-new deleteButton'>Excluir reserva</button>
           </div>

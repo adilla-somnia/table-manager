@@ -95,7 +95,7 @@ export default function FormReservation({ mode, id }) {
       const newTableId = form.table_id;
       const newDate = form.reservation_datetime;
       clearTimeout(timeoutRef.current);
-  
+
       if (newTableId === "" || newDate === "") {
         setAvailable(null);
         setChecking(false);
@@ -103,7 +103,7 @@ export default function FormReservation({ mode, id }) {
       }
   
       if (mode === "edit") {
-        if (newTableId == initialForm.table_id || newDate == initialForm.reservation_datetime) {
+        if (newTableId == initialForm.table_id && newDate == initialForm.reservation_datetime) {
           setAvailable(true);
           setChecking(false);
           return;
@@ -139,16 +139,17 @@ export default function FormReservation({ mode, id }) {
     setForm({ ...form, [e.target.name]: e.target.value });
     setAvailable(null)
     if (mode === 'edit'){
-    if (e.target.name === 'table_id' && e.target.value == initialForm.table_id) {
+      if (e.target.name === 'table_id' && e.target.value == initialForm.table_id) {
       setAvailable(true)
     }
-    else if (e.target.name === 'reservation_datetime' && e.target.value == initialForm.reservation_datetime) {
+      else if (e.target.name === 'reservation_datetime' && e.target.value == initialForm.reservation_datetime) {
       setAvailable(true)
     }
-    else if (e.target.name === 'status') {
+      else if (e.target.name === 'status') {
       setAvailable(true)
     }
-  }
+    }
+
     if (e.target.name === 'table_id') {
       let capacity_table = tables.find(t => t.id == e.target.value)
       setCapacity(capacity_table.capacity)
