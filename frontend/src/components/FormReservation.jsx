@@ -169,7 +169,6 @@ useEffect(() => {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-        console.log(form)
       let message;
       if (mode === "add") {
         await createReservation(form);

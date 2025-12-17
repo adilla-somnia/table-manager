@@ -3,6 +3,10 @@ import { useRef } from 'react';
 
 export function CardReserva({ reservations, onEdit, onDelete }) {
 
+  const sortedReservations = [...reservations.sort((a, b) => {
+    return new Date(b.updated_at) - new Date(a.updated_at)
+  })]
+
   const lockRef = useRef(false);
 
   const handleSafeClick = (callback) => (e) => {
@@ -31,7 +35,7 @@ export function CardReserva({ reservations, onEdit, onDelete }) {
 
   return (
     <div className="cards-container">
-      { (!reservations || reservations.length === 0) ? <p>Sem reservas...</p> : (reservations?.map((reservation) => (
+      { (!reservations || reservations.length === 0) ? <p>Sem reservas...</p> : (sortedReservations?.map((reservation) => (
         <div key={reservation.id} className="card">
           <div className='info'>
           <p>Reserva #{reservation.id}</p>

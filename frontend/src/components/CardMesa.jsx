@@ -4,6 +4,9 @@ import { useRef } from 'react';
 // const URL = 'http://localhost:3000/tables/';
 
 export function CardMesa({ restrict, tables, onEdit, onDelete }) {
+  const sortedTables = [...tables].sort((a, b) => {
+    return new Date(b.updated_at) - new Date(a.updated_at);
+  });
 
   const lockRef = useRef(false);
 
@@ -20,7 +23,7 @@ export function CardMesa({ restrict, tables, onEdit, onDelete }) {
 
   return (
     <div className="cards-container">
-      { (!tables || tables.length === 0) ? <p>Sem mesas...</p> : (tables?.map((table) => (
+      { (!tables || tables.length === 0) ? <p>Sem mesas...</p> : (sortedTables?.map((table) => (
         <div key={table.id} className="card">
           <div className='info'>
           <p>Mesa #{table.table_number}</p>

@@ -2,6 +2,10 @@ import { useRef } from "react";
 import "../style/cards.css";
 
 export function CardCliente({ restrict, customers, onEdit, onDelete }) {
+  const sortedCustomers = [...customers.sort((a, b) => {
+    return new Date(b.updated_at) - new Date(a.updated_at)
+  })]
+  
   const lockRef = useRef();
 
   const handleSafeClick = (callback) => (e) => {
@@ -20,7 +24,7 @@ export function CardCliente({ restrict, customers, onEdit, onDelete }) {
       {!customers || customers.length === 0 ? (
         <p>Sem clientes...</p>
       ) : (
-        customers?.map((customer) => (
+        sortedCustomers?.map((customer) => (
           <div key={customer.id} className="card">
             <div className="info">
               <p>{customer.name}</p>
