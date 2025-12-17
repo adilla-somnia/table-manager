@@ -14,7 +14,7 @@
   `npm install`
 
 
-5. Altere o arquivo .env inserindo o seu usario para o MySQL em DB_USER e sua senha em DB_PASSWORD
+5. Altere o arquivo .env inserindo o seu usuário para o MySQL em DB_USER e sua senha em DB_PASSWORD (use "git add" e "git commit" para salvar o arquivo localmente e continuar)
 
 
 6. Execute o arquivo de setup do banco de dados:
