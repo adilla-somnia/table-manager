@@ -17,8 +17,7 @@
 
 6. Coloque o back-end para rodar com o comando(deixe este terminal aberto enquanto roda o projeto):
 `node reservas.js`
-
-6.1 Backend está rodando na porta 3000
+(Backend está rodando na porta 3000)
 
 7. Após isso abra outro terminal e entre no diretório "frontend" e execute este comando:
 `npm install`
